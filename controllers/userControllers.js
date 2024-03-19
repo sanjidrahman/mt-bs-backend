@@ -45,11 +45,11 @@ const signin = async (req, res) => {
                             {
                                 $inc: {
                                     'products.$.quantity': 1,
-                                    'products.$.totalPrice': 1 * product.price
+                                    'products.$.totalPrice': item.quantity * product.price
                                 }
                             })
                     } else {
-                        const total = 1 * product.price
+                        const total = item.quantity * product.price
                         await Cart.findOneAndUpdate({ user: existingUser._id },
                             {
                                 $push: {
@@ -64,7 +64,7 @@ const signin = async (req, res) => {
                         )
                     }
                 } else {
-                    const total = 1 * product.price
+                    const total = item.quantity * product.price
                     const cartData = new Cart({
                         user: existingUser._id,
                         products: [{
@@ -126,11 +126,11 @@ const signup = async (req, res) => {
                             {
                                 $inc: {
                                     'products.$.quantity': 1,
-                                    'products.$.totalPrice': 1 * product.price
+                                    'products.$.totalPrice': item.quantity * product.price
                                 }
                             })
                     } else {
-                        const total = 1 * product.price
+                        const total = item.quantity * product.price
                         await Cart.findOneAndUpdate({ user: createdUser._id },
                             {
                                 $push: {
@@ -145,7 +145,7 @@ const signup = async (req, res) => {
                         )
                     }
                 } else {
-                    const total = 1 * product.price
+                    const total = item.quantity * product.price
                     const cartData = new Cart({
                         user: createdUser._id,
                         products: [{
