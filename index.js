@@ -13,7 +13,7 @@ mongoose.connect(process.env.DB_URL)
     .catch((err) => console.log(err))
 
 app.use(cors({
-    origin: ['http://localhost:4200']
+    origin: ['http://localhost:4200', 'https://mt-frontend-three.vercel.app']
 }));
 app.use(cookieParser())
 app.use(session({
