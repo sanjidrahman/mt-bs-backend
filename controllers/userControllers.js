@@ -33,7 +33,7 @@ const signin = async (req, res) => {
         const token = jwt.sign({ payload }, 'usersecret');
 
         // Adding cart datas from local storage to DB
-        if (localCartData || localCartData.length > 1) {
+        if (localCartData) {
             for (let item of localCartData) {
                 const product = await Product.findOne({ _id: item.f_id })
                 const cart = await Cart.findOne({ user: existingUser._id })
@@ -114,7 +114,7 @@ const signup = async (req, res) => {
         const token = jwt.sign({ payload }, 'usersecret');
 
         // Adding cart datas from local storage to DB
-        if (localCartData || localCartData.length > 1) {
+        if (localCartData) {
             for (let item of localCartData) {
                 const product = await Product.findOne({ _id: item.f_id })
                 const cart = await Cart.findOne({ user: createdUser._id })
